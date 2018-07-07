@@ -1,2 +1,7 @@
-%div{align: 'center'}
-  = image_tag @qr_path
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width,initial-scale=1,user-scalable=no", :name => "viewport"}/
+  %body
+    %div{align: 'center'}
+      = image_tag @qr_path
