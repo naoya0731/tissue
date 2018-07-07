@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def qrcode
-    qr = RQRCode::QRCode.new( @post.url, :size => 6, :level => :h )
+    qr = RQRCode::QRCode.new( @post.url, :size => 7, :level => :h )
     @qr_path = qr.to_img.resize(400,400).to_data_url
     render layout: false
   end
