@@ -57,3 +57,7 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'simple_form'
 gem 'friendly_id', '~> 5.1.0'
+gem "paranoia", "~> 2.2"
+gem 'rinku'
+gem 'rqrcode'
+gem 'rqrcode_png'

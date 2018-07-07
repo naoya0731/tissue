@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :qrcode]
 
   # GET /posts
   # GET /posts.json
@@ -10,6 +10,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+  end
+
+  def qrcode
+    qr = RQRCode::QRCode.new( @post.url, :size => 6, :level => :h )
+    @qr_path = qr.to_img.resize(400,400).to_data_url
+    render layout: false
   end
 
   # GET /posts/new

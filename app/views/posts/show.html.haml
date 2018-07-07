@@ -1,7 +1,14 @@
-%h3.title= @post.title
-%p= @post.body
+%h3.title
+  = @post.title
+%div
+  %small= @post.updated_at.strftime("%Y-%m-%d %H:%M")
+%hr
+%p
+  = simple_format(Rinku.auto_link(@post.body, mode=:all, link_attr=nil, skip_tags=nil).html_safe)
 
-.input-group.mb-2
+%hr
+
+.input-group.mb-3
   %input.form-control#url{"aria-describedby" => "url", :value => @post.url, :type => "text", readonly: true}/
   .input-group-append
     %button.btn.btn-outline-secondary#copied{:type => "button", 
@@ -11,12 +18,13 @@
                                       title: "コピー完了！" } コピー
 
 .row
-  .col-md-6.col-sm-12.mb-2
+  .col-md-6.col-sm-12.mb-3
     %button.btn.btn-primary.btn-block
       Twitterでシェア
   .col-md-6.col-sm-12
-    %button.btn.btn-primary.btn-block
-      QRコードでシェア
+    = link_to post_qrcode_path(@post.key) do
+      %button.btn.btn-primary.btn-block
+        QRコードでシェア
 
 = link_to 'Edit', edit_post_path(@post)
 \|

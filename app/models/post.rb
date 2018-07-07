@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :key, use: :slugged
+  acts_as_paranoid
   validates :title, presence: true
   validates :body, presence: true
 
