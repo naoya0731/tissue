@@ -1,0 +1,34 @@
+.alert.alert-primary
+  <strong>ティッシュ</strong>は、手軽に文章や画像をURLやQRコードでシェアするためのサービスです。
+
+%div{align: 'right'}
+  = link_to '新しいティッシュ', new_post_path, class: 'btn btn-primary'
+
+%h3.title あなたのティッシュ
+
+- if @posts.size.zero?
+  .mt-4{align: 'center'}
+    まだティッシュがありません
+    %br
+    ティッシュを始めましょう
+    %br
+    %br
+    = link_to '新しいティッシュ', new_post_path, class: 'btn btn-primary'
+
+- else
+  - @posts.each do |post|
+    .card.mt-2
+      .card-body
+        = link_to post do
+          = post.title
+        %div{align: 'right'}
+          %small
+            = link_to post do
+              %span.mr-2    
+                👀詳細
+            = link_to edit_post_path(post) do
+              %span.mr-2
+                ✏️編集
+            = link_to post, method: :delete, data: { confirm: '本当に削除していいですか？' } do
+              %span
+                🗑️削除
