@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   end
 
   def url
-    host = Rails.env.development? ? "http://localhost:3000" : ""
+    host = Rails.env.development? ? "http://localhost:3000" : "https://tissue-app.herokuapp.com"
     url = "#{host}/posts/#{self.key}"
   end
 end
