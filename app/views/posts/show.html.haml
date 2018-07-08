@@ -1,7 +1,12 @@
 %h3.title
   = @post.title
 %div
-  %small= @post.updated_at.strftime("%Y-%m-%d %H:%M")
+  %small.mr-2
+    - if @post.user_id.nil?
+      = "😎匿名"
+    - else
+      開発中
+  %small= "🕑#{@post.updated_at.strftime("%Y-%m-%d %H:%M")}"
 %hr
 %p
   = simple_format(Rinku.auto_link(@post.body, mode=:all, link_attr=nil, skip_tags=nil).html_safe)
@@ -19,11 +24,14 @@
 
 .row
   .col-md-6.col-sm-12.mb-3
-    %button.btn.btn-primary.btn-block
-      Twitterでシェア
-  .col-md-6.col-sm-12
-    = link_to post_qrcode_path(@post.key) do
+    = link_to tweet_url(@post.url, @post.title), target: 'blank' do
       %button.btn.btn-primary.btn-block
+        %i.fab.fa-twitter
+        Twitterでシェア
+  .col-md-6.col-sm-12
+    = link_to post_qrcode_path(@post.key), target: 'blank' do
+      %button.btn.btn-primary.btn-block
+        %i.fas.fa-qrcode
         QRコードでシェア
 
 = link_to 'Edit', edit_post_path(@post)

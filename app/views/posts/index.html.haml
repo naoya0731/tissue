@@ -1,4 +1,4 @@
-.alert.alert-primary
+.alert.alert-secondary
   <strong>ティッシュ</strong>は、手軽に文章や画像をURLやQRコードでシェアするためのサービスです。
 
 %div{align: 'right'}
@@ -14,14 +14,17 @@
     %br
     %br
     = link_to '新しいティッシュ', new_post_path, class: 'btn btn-primary'
-
 - else
   - @posts.each do |post|
     .card.mt-2
       .card-body
-        = link_to post do
-          = post.title
-        %div{align: 'right'}
+        %div
+          = link_to post do
+            = post.title
+        %div{style: 'float:left;'}
+          %small
+            = "🕑#{post.updated_at.strftime("%Y-%m-%d %H:%M")}"
+        %div{style: 'float:right;'}
           %small
             = link_to post do
               %span.mr-2    
