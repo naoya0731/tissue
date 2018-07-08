@@ -61,3 +61,6 @@ gem "paranoia", "~> 2.2"
 gem 'rinku'
 gem 'rqrcode'
 gem 'rqrcode_png'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'

@@ -23,12 +23,13 @@
       .row
         .col-sm-12.col-md-3
         .col-sm-12.col-md-6
+          = link_to 'aa', user_twitter_omniauth_authorize_path
           - if notice
             .alert.alert-success= notice
           - if alert
             .alert.alert-danger= alert
           = yield
-        .col-sm-12.col-md-3          
+        .col-sm-12.col-md-3     
 
 :javascript
   $(function(){
