@@ -3,8 +3,8 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width,initial-scale=1,user-scalable=no", :name => "viewport"}/
-    %title ティッシュ
     = csrf_meta_tags    
+    = display_meta_tags default_meta_tags
     %link{:crossorigin => "anonymous", :href => "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css", :integrity => "sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4", :rel => "stylesheet"}/
     %script{:crossorigin => "anonymous", :integrity => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", :src => "https://code.jquery.com/jquery-3.3.1.slim.min.js"}
     %script{:crossorigin => "anonymous", :integrity => "sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"}
@@ -52,6 +52,17 @@
             - if alert
               .alert.alert-danger= alert
             = yield
+          .col-sm-12.col-md-3
+    %hr
+    %footer.mt-3.mb-3
+      .container
+        .row
+          .col-sm-12.col-md-3
+          .col-sm-12.col-md-6   
+            %div{align: 'center'}
+              ティッシュ@2018
+              %br
+              = link_to 'お問い合わせ', 'https://twitter.com/minna_vtuber'
           .col-sm-12.col-md-3     
 
 :javascript
