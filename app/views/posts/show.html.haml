@@ -2,10 +2,10 @@
   = @post.title
 %div
   %small.mr-2
-    - if @post.user_id.nil?
+    - if @user.nil?
       = "😎匿名"
     - else
-      開発中
+      = "😎#{@user.name}"
   %small= "🕑#{@post.updated_at.strftime("%Y-%m-%d %H:%M")}"
 %hr
 %p

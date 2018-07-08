@@ -15,21 +15,36 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     %header
-      %div{align: 'center'}
-        /= image_tag 'http://static.abeka.com/Shared/ABeka/ProductImages/ClipArt/234184/150x150y160fx160fh-w/234184-Blue-Tissue-Box-color-png.png', width: '50px'
-        = link_to '🤧ティッシュ', root_path, class: 'title'
-        %hr{style: 'margin-top:8px;'}
-    .container
-      .row
-        .col-sm-12.col-md-3
-        .col-sm-12.col-md-6
-          = link_to 'aa', user_twitter_omniauth_authorize_path
-          - if notice
-            .alert.alert-success= notice
-          - if alert
-            .alert.alert-danger= alert
-          = yield
-        .col-sm-12.col-md-3     
+      .container
+        .row
+          .col-sm-12.col-md-3
+          .col-sm-12.col-md-6
+            %nav.navbar.navbar-light
+              %a.navbar-brand{:href => "#"}
+                %img.d-inline-block.align-top{:alt => "", :height => "30", :src => "https://rakugakiicon.com/ri/wp-content/uploads/2016/05/2402.png", :width => "30"}/
+                %span{style: 'font-weight:bold;'} ティッシュ
+              .nav-right
+                - if current_user
+                  .dropdown
+                    %button#dropdownMenuButton.btn.btn-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button", style: 'text-decoration: none;'}
+                      = image_tag current_user.image_url, width: '30', class: 'rounded-circle'
+                    .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenuButton"}
+                      = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+                - else
+                  = link_to user_twitter_omniauth_authorize_path do
+                    %button.btn.btn-outline-secondary ログイン
+          .col-sm-12.col-md-3
+    #content
+      .container
+        .row
+          .col-sm-12.col-md-3
+          .col-sm-12.col-md-6   
+            - if notice
+              .alert.alert-success= notice
+            - if alert
+              .alert.alert-danger= alert
+            = yield
+          .col-sm-12.col-md-3     
 
 :javascript
   $(function(){

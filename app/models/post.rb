@@ -14,6 +14,15 @@ class Post < ApplicationRecord
     key
   end
 
+  def self.new_guest_id
+    is_new = false
+    while !is_new
+      key = SecureRandom.hex(10)
+      is_new = true if self.where(guest_id: key).size.zero?
+    end
+    key
+  end
+
   def url
     host = Rails.env.development? ? "http://localhost:3000" : "https://tissue-app.herokuapp.com"
     url = "#{host}/posts/#{self.key}"

@@ -4,12 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = current_user ? Post.where(user_id: current_user.id) : Post.where(guest_id: guest_id)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @user = current_user ? User.find_by(id: current_user.id) : nil
   end
 
   def qrcode
@@ -32,6 +33,14 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.key = Post.new_key
+   
+    if current_user
+      @post.user_id = current_user.id
+      @post.is_guest = false
+    else
+      @post.guest_id = guest_id
+      @post.is_guest = true
+    end
     
     respond_to do |format|
       if @post.save
@@ -77,5 +86,5 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.fetch(:post, {}).permit(:title, :body)
-    end
+    end 
 end
