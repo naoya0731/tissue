@@ -1,5 +1,11 @@
 
-- if @my_tissue
+- if @my_tissue && @post.is_guest
+  .alert.alert-warning
+    これはあなたのティッシュですが、現在、あなたは匿名です。無料の
+    = link_to user_twitter_omniauth_authorize_path do
+      %strong Twitterログイン
+    をすると、ティッシュの編集、削除が可能になります。
+- elsif @my_tissue
   .alert.alert-info
     これはあなたのティッシュです。編集や削除ができます。
 
@@ -8,12 +14,12 @@
 %div
   %small.mr-2
     - if @user.nil?
-      = "😎ゲスト"
+      = "😎匿名"
     - else
       = "😎#{@user.name}"
   %small.mr-2
     = "🕑#{@post.updated_at.strftime("%Y-%m-%d %H:%M")}"
-  - if @my_tissue
+  - if @my_tissue && @post.is_guest == false
     = link_to edit_post_path(@post) do
       %small.mr-2
         ✏️編集
