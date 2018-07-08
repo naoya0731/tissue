@@ -19,6 +19,12 @@ module ApplicationHelper
         site_name: 'ティッシュ',
         description: :description,
         locale: 'ja_JP'
+      },
+      twitter: {
+        card: 'summary',
+        title: :title,
+        description: :description,
+        #image: image
       }
     }
   end

@@ -1,5 +1,6 @@
 - set_meta_tags title: @post.title
 - set_meta_tags description: @post.body
+- set_meta_tags twitter: {title: @post.title, description: @post.body}
 
 - if @my_tissue && @post.is_guest
   .alert.alert-warning
