@@ -1,7 +1,6 @@
--# frozen_string_literal: true
 = simple_form_for(@post) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-  = f.input :title
-  = f.input :body
+  = f.input :title, placeholder: '例: イベントの詳細'
+  = f.input :body, input_html: {rows: 10}, placeholder: '短文でも長文でも伝えたいことを自由に書いてください'
   = f.button :submit, class: 'btn-primary', value: '登録'
