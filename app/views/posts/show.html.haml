@@ -1,12 +1,25 @@
+
+- if @my_tissue
+  .alert.alert-info
+    これはあなたのティッシュです。編集や削除ができます。
+
 %h3.title
   = @post.title
 %div
   %small.mr-2
     - if @user.nil?
-      = "😎匿名"
+      = "😎ゲスト"
     - else
       = "😎#{@user.name}"
-  %small= "🕑#{@post.updated_at.strftime("%Y-%m-%d %H:%M")}"
+  %small.mr-2
+    = "🕑#{@post.updated_at.strftime("%Y-%m-%d %H:%M")}"
+  - if @my_tissue
+    = link_to edit_post_path(@post) do
+      %small.mr-2
+        ✏️編集
+    = link_to @post, method: :delete, data: { confirm: '本当に削除していいですか？' } do
+      %small.mr-2
+        🗑️削除
 %hr
 %p
   = simple_format(Rinku.auto_link(@post.body, mode=:all, link_attr=nil, skip_tags=nil).html_safe)
@@ -33,7 +46,3 @@
       %button.btn.btn-primary.btn-block
         %i.fas.fa-qrcode
         QRコードでシェア
-
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Back', posts_path
