@@ -43,7 +43,7 @@
 
 .row
   .col-md-6.col-sm-12.mb-3
-    = link_to tweet_url(@post.url, @post.title), target: 'blank' do
+    = link_to tweet_url(@post.url, @post.title) do
       %button.btn.btn-primary.btn-block
         %i.fab.fa-twitter
         Twitterでシェア
