@@ -1,0 +1,31 @@
+%div{align: 'center'}
+  %div= image_tag @user.image_url, class: 'rounded-circle'
+  %div= @user.name
+%div.mt-3
+  %h3.title= "#{@user.name}さんのティッシュ"
+
+- if @posts.size.zero?
+  .mt-4{align: 'center'}
+    まだティッシュがありません
+- else
+  - @posts.each do |post|
+    .card.mt-2
+      .card-body
+        %div
+          = link_to post do
+            = post.title
+        %div{style: 'float:left;'}
+          %small
+            = "🕑#{post.updated_at.strftime("%Y-%m-%d %H:%M")}"
+        %div{style: 'float:right;'}
+          %small
+            = link_to post do
+              %span.mr-2    
+                👀詳細
+            - if current_user
+              = link_to edit_post_path(post) do
+                %span.mr-2
+                  ✏️編集
+              = link_to post, method: :delete, data: { confirm: '本当に削除していいですか？' } do
+                %span
+                  🗑️削除

@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @user = current_user ? User.find_by(id: current_user.id) : nil    
+    @user = @post.user_id ? User.find_by(id: @post.user_id) : nil    
   end
 
   def qrcode
