@@ -16,8 +16,19 @@ class User < ApplicationRecord
         image_url: auth.info.image,
         password: Devise.friendly_token[0, 20]
       )
+      user.set_key
     end
 
     user
+  end
+
+  def set_key
+    is_new = false
+    while !is_new
+      key = SecureRandom.hex(10)
+      is_new = true if User.where(key: key).size.zero?
+    end
+    
+    update(key: key)
   end
 end
